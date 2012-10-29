@@ -1,4 +1,4 @@
-Capistrano Maintenenace Extension
+Capistrano Maintenance Extension
 =================================
 
 This gem simply offers the recently removed `deploy:web:disable` and `deploy:web:enable` tasks to your Capistrano deployment.
