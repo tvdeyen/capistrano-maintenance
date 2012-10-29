@@ -1,9 +1,10 @@
 # encoding: utf-8
 $:.push File.expand_path("../lib", __FILE__)
+require "capistrano"
 require "capistrano/maintenance/version"
 
 Gem::Specification.new do |s|
-  s.name        = 'capistrano-jukebox'
+  s.name        = 'capistrano-maintenance'
   s.version     = Capistrano::Maintenance::VERSION
   s.platform    = Gem::Platform::RUBY
   s.license     = 'MIT'
