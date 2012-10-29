@@ -6,7 +6,11 @@ This gem simply offers the recently removed `deploy:web:disable` and `deploy:web
 Usage
 -----
 
-Put this line into your deploy.rb file:
+Install the gem via rubygems:
+
+`gem install capistrano-maintenance`
+
+And put this line into your deploy.rb file:
 
 `require 'capistrano/maintenance'`
 
