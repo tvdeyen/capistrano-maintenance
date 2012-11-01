@@ -1,53 +1,25 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>System down for maintenance</title>
-
-  <style type="text/css">
-    div.outer {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 500px;
-      height: 300px;
-      margin-left: -260px;
-      margin-top: -150px;
+    <title>Maintenance</title>
+    <style type="text/css">
+    body {
+        width: 400px;
+        margin: 100px auto;
+        font: 300 120% "OpenSans", "Helvetica Neue", "Helvetica", Arial, Verdana, sans-serif;
     }
 
-    .DialogBody {
-      margin: 0;
-      padding: 10px;
-      text-align: left;
-      border: 1px solid #ccc;
-      border-right: 1px solid #999;
-      border-bottom: 1px solid #999;
-      background-color: #fff;
+    h1 {
+        font-weight: 300;
     }
-
-    body { background-color: #fff; }
-  </style>
+    </style>
 </head>
-
 <body>
+    <h1>Maintenance</h1>
 
-  <div class="outer">
-     <div class="DialogBody" style="text-align: center;">
-       <div style="text-align: center; width: 200px; margin: 0 auto;">
-         <p style="color: red; font-size: 16px; line-height: 20px;">
-           The system is down for <%= reason ? reason : "maintenance" %>
-           as of <%= Time.now.strftime("%H:%M %Z") %>.
-         </p>
-         <p style="color: #666;">
-           It'll be back <%= deadline ? deadline : "shortly" %>.
-         </p>
-       </div>
-     </div>
-  </div>
+    <p>The system is down for <%= reason ? reason : "maintenance" %><br>
+           as of <%= Time.now.strftime("%H:%M %Z") %>.</p>
 
+    <p>It'll be back <%= deadline ? deadline : "shortly" %>.</p>
 </body>
 </html>
