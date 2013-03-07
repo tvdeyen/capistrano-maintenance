@@ -15,3 +15,8 @@ And put this line into your deploy.rb file:
 `require 'capistrano/maintenance'`
 
 That's it. Everthing works like expected.
+
+If you get tired of being warned how to configure your server:
+
+  set :maintenance_config_warning, false
+

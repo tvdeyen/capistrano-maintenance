@@ -36,29 +36,31 @@ module Capistrano::Maintenance
             require 'erb'
             on_rollback { run "rm -f #{shared_path}/system/#{maintenance_basename}.html" }
 
-            warn <<-EOHTACCESS
+            if fetch(:maintenance_config_warning, true)
+              warn <<-EOHTACCESS
 
-              # Please add something like this to your site's Apache htaccess to redirect users to the maintenance page.
-              # More Info: http://www.shiftcommathree.com/articles/make-your-rails-maintenance-page-respond-with-a-503
+                # Please add something like this to your site's Apache htaccess to redirect users to the maintenance page.
+                # More Info: http://www.shiftcommathree.com/articles/make-your-rails-maintenance-page-respond-with-a-503
 
-              ErrorDocument 503 /system/#{maintenance_basename}.html
-              RewriteEngine On
-              RewriteCond %{REQUEST_URI} !\.(css|gif|jpg|png)$
-              RewriteCond %{DOCUMENT_ROOT}/system/#{maintenance_basename}.html -f
-              RewriteCond %{SCRIPT_FILENAME} !#{maintenance_basename}.html
-              RewriteRule ^.*$  -  [redirect=503,last]
+                ErrorDocument 503 /system/#{maintenance_basename}.html
+                RewriteEngine On
+                RewriteCond %{REQUEST_URI} !\.(css|gif|jpg|png)$
+                RewriteCond %{DOCUMENT_ROOT}/system/#{maintenance_basename}.html -f
+                RewriteCond %{SCRIPT_FILENAME} !#{maintenance_basename}.html
+                RewriteRule ^.*$  -  [redirect=503,last]
 
-              # Or if you are using Nginx add this to your server config:
+                # Or if you are using Nginx add this to your server config:
 
-              if (-f $document_root/system/maintenance.html) {
-                return 503;
-              }
-              error_page 503 @maintenance;
-              location @maintenance {
-                rewrite  ^(.*)$  /system/maintenance.html last;
-                break;
-              }
-            EOHTACCESS
+                if (-f $document_root/system/maintenance.html) {
+                  return 503;
+                }
+                error_page 503 @maintenance;
+                location @maintenance {
+                  rewrite  ^(.*)$  /system/maintenance.html last;
+                  break;
+                }
+              EOHTACCESS
+            end
 
             reason = ENV['REASON']
             deadline = ENV['UNTIL']
