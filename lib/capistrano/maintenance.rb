@@ -5,6 +5,7 @@ module Capistrano::Maintenance
   def self.load_into(configuration)
     configuration.load do
 
+      _cset(:maintenance_dirname) { "#{shared_path}/system" }
       _cset :maintenance_basename, "maintenance"
       _cset(:maintenance_template_path) { File.join(File.dirname(__FILE__), "templates", "maintenance.html.erb") }
 
@@ -34,7 +35,7 @@ module Capistrano::Maintenance
           DESC
           task :disable, :roles => :web, :except => { :no_release => true } do
             require 'erb'
-            on_rollback { run "rm -f #{shared_path}/system/#{maintenance_basename}.html" }
+            on_rollback { run "rm -f #{mainteannce_dirname}/#{maintenance_basename}.html" }
 
             warn <<-EOHTACCESS
 
@@ -66,7 +67,7 @@ module Capistrano::Maintenance
             template = File.read(maintenance_template_path)
             result = ERB.new(template).result(binding)
 
-            put result, "#{shared_path}/system/#{maintenance_basename}.html", :mode => 0644
+            put result, "#{maintenance_dirname}/#{maintenance_basename}.html", :mode => 0644
           end
 
           desc <<-DESC
@@ -76,7 +77,7 @@ module Capistrano::Maintenance
             web-accessible again.
           DESC
           task :enable, :roles => :web, :except => { :no_release => true } do
-            run "rm -f #{shared_path}/system/#{maintenance_basename}.html"
+            run "rm -f #{maintenance_dirname}/#{maintenance_basename}.html"
           end
 
         end
