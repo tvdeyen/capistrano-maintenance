@@ -35,7 +35,7 @@ module Capistrano::Maintenance
           DESC
           task :disable, :roles => :web, :except => { :no_release => true } do
             require 'erb'
-            on_rollback { run "rm -f #{mainteannce_dirname}/#{maintenance_basename}.html" }
+            on_rollback { run "rm -f #{maintenance_dirname}/#{maintenance_basename}.html" }
 
             if fetch(:maintenance_config_warning, true)
               warn <<-EOHTACCESS
