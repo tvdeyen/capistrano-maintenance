@@ -27,7 +27,7 @@ When maintenance is done, you can enable the web:
 
     cap deploy:web:enable
 
-If you will are using [multistage capistrano](https://github.com/capistrano/capistrano/wiki/2.x-Multistage-Extension), you'll also need to include the stage before `deploy:web:disable` and `deploy:web:enable`:
+If you are using [multistage capistrano](https://github.com/capistrano/capistrano/wiki/2.x-Multistage-Extension), you'll also need to include the stage before `deploy:web:disable` and `deploy:web:enable`:
 
     cap production deploy:web:disable
     cap production deploy:web:enable
