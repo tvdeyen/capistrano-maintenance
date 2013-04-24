@@ -5,9 +5,9 @@ module Capistrano::Maintenance
   def self.load_into(configuration)
     configuration.load do
 
-      _cset(:maintenance_dirname) { "#{shared_path}/system" }
-      _cset :maintenance_basename, "maintenance"
-      _cset(:maintenance_template_path) { File.join(File.dirname(__FILE__), "templates", "maintenance.html.erb") }
+      set(:maintenance_dirname) { "#{shared_path}/system" }
+      set :maintenance_basename, "maintenance"
+      set(:maintenance_template_path) { File.join(File.dirname(__FILE__), "templates", "maintenance.html.erb") }
 
       namespace :deploy do
 
