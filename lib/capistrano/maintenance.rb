@@ -69,7 +69,12 @@ module Capistrano::Maintenance
             template = File.read(maintenance_template_path)
             result = ERB.new(template).result(binding)
 
-            put result, "#{maintenance_dirname}/#{maintenance_basename}.html", :mode => 0644
+            put_options = { :mode => 0644 }
+            if fetch(:put_via, false)
+              put_options[:via] = fetch(:put_via)
+            end
+
+            put result, "#{maintenance_dirname}/#{maintenance_basename}.html", put_options
           end
 
           desc <<-DESC
