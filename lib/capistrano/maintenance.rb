@@ -70,7 +70,7 @@ module Capistrano::Maintenance
             result = ERB.new(template).result(binding)
 
             put_options = { :mode => 0644 }
-            if fetch(:put_via)
+            if fetch(:put_via, false)
               put_options[:via] = fetch(:put_via)
             end
 
